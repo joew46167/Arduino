@@ -36,6 +36,7 @@ import cc.arduino.contributions.packages.ContributedPlatform;
 import cc.arduino.contributions.packages.ContributionInstaller;
 import cc.arduino.contributions.packages.ContributionsIndexer;
 import cc.arduino.contributions.packages.ui.ContributionManagerUI;
+import cc.arduino.contributions.ui.ManagerDialog;
 import cc.arduino.files.DeleteFilesOnShutdown;
 import cc.arduino.packages.DiscoveryManager;
 import cc.arduino.packages.Uploader;
@@ -1357,6 +1358,10 @@ public class Base {
     if (contributionsSelfCheck != null) {
       contributionsSelfCheck.cancel();
     }
+
+    ManagerDialog dlg = new ManagerDialog(activeEditor,ManagerDialog.DialogType.LIBRARY);
+    dlg.setVisible(true);
+
     @SuppressWarnings("serial")
     LibraryManagerUI managerUI = new LibraryManagerUI(activeEditor, libraryInstaller) {
       @Override

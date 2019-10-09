@@ -31,8 +31,7 @@ package cc.arduino.contributions.libraries.ui;
 
 import static processing.app.I18n.tr;
 
-import java.awt.Dialog;
-import java.awt.Frame;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
@@ -101,15 +100,25 @@ public class LibraryManagerUI extends InstallerJDialog<ContributedLibraryRelease
     super(parent, tr("Library Manager"), Dialog.ModalityType.APPLICATION_MODAL, tr("Unable to reach Arduino.cc due to possible network issues."));
     this.installer = installer;
 
-    filtersContainer.add(new JLabel(tr("Topic")), 1);
+    String topicLabel = tr("Topic");
+    filtersContainer.add(new JLabel(topicLabel), 1);
     filtersContainer.remove(2);
+    Component component = filtersContainer.getComponent(2);
+    // rename the context description of the combo box
+    component.getAccessibleContext().setAccessibleDescription(topicLabel);
+    component.setName(topicLabel);
+    filtersContainer.remove(2);
+    filtersContainer.add(component,2);
 
+    String typeLabel = tr("Type");
     typeChooser = new JComboBox();
     typeChooser.setMaximumRowCount(20);
     typeChooser.setEnabled(false);
+    typeChooser.getAccessibleContext().setAccessibleDescription(typeLabel);
+
 
     filtersContainer.add(Box.createHorizontalStrut(5), 0);
-    filtersContainer.add(new JLabel(tr("Type")), 1);
+    filtersContainer.add(new JLabel(typeLabel), 1);
     filtersContainer.add(Box.createHorizontalStrut(5), 2);
     filtersContainer.add(typeChooser, 3);
   }

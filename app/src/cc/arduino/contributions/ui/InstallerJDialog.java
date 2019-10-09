@@ -163,7 +163,9 @@ public abstract class InstallerJDialog<T> extends JDialog {
       filtersContainer = new JPanel();
       filtersContainer.setLayout(new BoxLayout(filtersContainer, BoxLayout.X_AXIS));
       filtersContainer.add(Box.createHorizontalStrut(5));
-      filtersContainer.add(new JLabel(tr("Type")));
+      String typeLabel = tr("Type");
+      categoryChooser.getAccessibleContext().setAccessibleDescription(typeLabel);
+      filtersContainer.add(new JLabel(typeLabel));
       filtersContainer.add(Box.createHorizontalStrut(5));
       filtersContainer.add(categoryChooser);
       filtersContainer.add(Box.createHorizontalStrut(5));
